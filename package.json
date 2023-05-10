@@ -2,6 +2,7 @@
   "name": "b-cine",
   "version": "1.0.0",
   "description": "Biblioteca de clases para una aplicación en código de un multiplex",
+  "repository": "https://github.com/faendal/Proyecto-Cine.git",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
