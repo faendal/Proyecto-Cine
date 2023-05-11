@@ -1,10 +1,13 @@
+import { Multiplex } from "./multiplex.mjs";
+
 export class Persona 
 {
-    constructor(id, nombre, numero_contacto) 
+    constructor(id, nombre, numero_contacto, saldo = 0) 
     {
         this.Id = id;
         this.Nombre = nombre;
         this.Numero_contacto = numero_contacto;
+        this._saldo = saldo;
     }
 
     get Id() { return this._id; }
@@ -41,5 +44,15 @@ export class Persona
             else throw new Error('Ingrese un número de contacto válido');
         }
         catch (error) {throw new Error("Ocurrió un error asignando el número de contacto\n" + error); }
+    }
+
+    Recargar_saldo(valor)
+    {
+        try 
+        { 
+            if (Multiplex.l_recargas.includes(value)) _saldo += valor;
+            else throw new Error("Ingrese un valor disponible en la lista de recargas");
+        }
+        catch (error) { throw new Error("Ocurrió un error recargando el saldo\n" + error); }
     }
 }

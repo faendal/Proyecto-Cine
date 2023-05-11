@@ -12,6 +12,8 @@ export class Funcion
         this.Fecha_hora = fecha_hora;
         this.Sala = sala;
         this.Pelicula = pelicula;
+        this.boletas_general = this._sala.Sillas_general;
+        this.boletas_preferencial =  this._sala.Sillas_preferencial;
     }
 
     get Fecha_hora() { return this._fecha_hora; }

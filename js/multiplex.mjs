@@ -17,6 +17,7 @@ export class Multiplex
     static precio_por_punto_platino = 5000;
     static precio_por_punto_oro = 2000;
     static l_edades_minimas = [7, 10, 13, 15, 17, 18];
+    static l_recargas = [40000, 50000, 60000, 70000, 80000, 90000, 100000, 120000, 150000, 2000000]
     static CombosMultiplex = 
     {
         1: 25000,
