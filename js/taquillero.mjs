@@ -1,5 +1,5 @@
-import { Multiplex } from "./multiplex";
-import { Persona } from "./persona";
+import { Multiplex } from "./multiplex.mjs";
+import { Persona } from "./persona.mjs";
 
 export class Taquillero extends Persona 
 {

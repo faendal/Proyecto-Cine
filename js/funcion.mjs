@@ -1,5 +1,5 @@
-import { Sala } from "./sala";
-import { Pelicula } from "./pelicula";
+import { Sala } from "./sala.mjs";
+import { Pelicula } from "./pelicula.mjs";
 
 export class Funcion 
 {

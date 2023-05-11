@@ -1,5 +1,5 @@
-import { Multiplex } from "./multiplex";
-import { Cliente } from "./cliente";
+import { Multiplex } from "./multiplex.mjs";
+import { Cliente } from "./cliente.mjs";
 
 export class Oro extends Cliente 
 {

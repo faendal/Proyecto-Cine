@@ -1,4 +1,4 @@
-import { Multiplex } from "./multiplex";
+import { Multiplex } from "./multiplex.mjs";
 
 export class Sala 
 {
