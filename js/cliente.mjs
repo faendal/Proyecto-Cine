@@ -48,7 +48,7 @@ export class Cliente extends Persona
                 {
                     if (cantidad_general + cantidad_preferencial <= funcion.boletas_general)
                     {
-                        saldo -= (cantidad_general * Multiplex.precio_general + cantidad_preferencial * Multiplex.precio_preferencial);
+                        this._saldo -= (cantidad_general * Multiplex.precio_general + cantidad_preferencial * Multiplex.precio_preferencial);
                         puntos_acumulados += (cantidad_general + 2 * cantidad_preferencial);
                         funcion.boletas_general -= cantidad_general;
                         funcion.boletas_preferencial -= cantidad_preferencial;
