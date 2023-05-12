@@ -13,13 +13,15 @@ export class Oro extends Cliente
         );
     }
 
+    get Descuento() { return this._descuento; }
+
     Comprar_Combo(combo)
     {
         try 
         {
             if (this._combosOro.hasOwnProperty(combo)) 
             {
-                if (this._saldo > this._combosOro[combo])
+                if (this._saldo >= this._combosOro[combo])
                 {
                     this._puntos_acumulados += Math.floor
                     (

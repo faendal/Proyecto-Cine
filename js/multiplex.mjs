@@ -3,6 +3,7 @@ export class Multiplex
     static min_duracion = 45 * 60 * 1000;
     static max_duracion = 500 * 60 * 1000;
     static descuento_taquillero = 0.3;
+    static descuento_regular = 0;
     static descuento_platino = 0.1;
     static descuento_oro = 0.2;
     static precio_general = 10000;

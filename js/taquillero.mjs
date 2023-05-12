@@ -21,9 +21,14 @@ export class Taquillero extends Persona
                 {
                     if (cantidad_general + cantidad_preferencial <= funcion.boletas_general)
                     {
-                        this._saldo -= (cantidad_general * Multiplex.precio_general + cantidad_preferencial * Multiplex.precio_preferencial - this.Descuento);
-                        funcion.boletas_general -= cantidad_general;
-                        funcion.boletas_preferencial -= cantidad_preferencial;
+                        let deduccion = cantidad_general * Multiplex.precio_general + cantidad_preferencial * Multiplex.precio_preferencial
+                        if (this._saldo >= deduccion)
+                        {
+                            this._saldo -= (deduccion - this.Descuento);
+                            funcion.boletas_general -= cantidad_general;
+                            funcion.boletas_preferencial -= cantidad_preferencial;
+                        }
+                        else throw new Error("No cuenta con el saldo suficiente para la transacción.\nRecargue por favor")
                     }
                     else throw new Error("No quedan suficientes boletas para completar su solicitud");
                 }

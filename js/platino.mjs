@@ -13,13 +13,15 @@ export class Platino extends Cliente
         );
     }
 
+    get Descuento() { return this._descuento; }
+
     Comprar_Combo(combo) 
     {
         try 
         {
             if (this._combosPlatino.hasOwnProperty(combo)) 
             {
-                if (this._saldo > this._combosPlatino[combo])
+                if (this._saldo >= this._combosPlatino[combo])
                 {
                     this._puntos_acumulados += Math.floor
                     (

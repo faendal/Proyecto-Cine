@@ -7,6 +7,7 @@ export class Cliente extends Persona
     {
         super(id, nombre, numero_contacto, saldo);
         this._puntos_acumulados = puntos_acumulados;
+        this._descuento = Multiplex.descuento_regular;
         this._combosCliente = Object.fromEntrie
         (
             Object.entries(Multiplex.CombosMultiplex).filter(([key]) => key >= 1 && key <= 3)
@@ -17,13 +18,15 @@ export class Cliente extends Persona
 
     get Saldo() { return this._saldo; }
 
+    get Descuento() { return this._descuento; }
+
     Comprar_Combo(combo) 
     {
         try
         {
             if (this._combosCliente.hasOwnProperty(combo)) 
             {
-                if (this._saldo > this._combosCliente[combo])
+                if (this._saldo >= this._combosCliente[combo])
                 {
                     this._puntos_acumulados += Math.floor
                     (
@@ -42,16 +45,22 @@ export class Cliente extends Persona
     {
         try
         {
-            if (cantidad_general + cantidad_preferencial >=1 && cantidad_general + cantidad_preferencial <= 10)
+            let cantidad_total = cantidad_general + cantidad_preferencial;
+            if (cantidad_total >=1 && cantidad_total <= 10)
             {
                 if (funcion instanceof Funcion)
                 {
-                    if (cantidad_general + cantidad_preferencial <= funcion.boletas_general)
+                    if (cantidad_total <= funcion.boletas_general + funcion.boletas_preferencial)
                     {
-                        this._saldo -= (cantidad_general * Multiplex.precio_general + cantidad_preferencial * Multiplex.precio_preferencial);
-                        puntos_acumulados += (cantidad_general + 2 * cantidad_preferencial);
-                        funcion.boletas_general -= cantidad_general;
-                        funcion.boletas_preferencial -= cantidad_preferencial;
+                        let deduccion = cantidad_general * Multiplex.precio_general + cantidad_preferencial * Multiplex.precio_preferencial;
+                        if(this._saldo >= deduccion)
+                        {
+                            this._saldo -= (deduccion - (1 - this.Descuento));
+                            puntos_acumulados += (cantidad_general + 2 * cantidad_preferencial);
+                            funcion.boletas_general -= cantidad_general;
+                            funcion.boletas_preferencial -= cantidad_preferencial;
+                        }
+                        else throw new Error("No cuenta con el saldo suficiente para la transacción.\nRecargue por favor");
                     }
                     else throw new Error("No quedan suficientes boletas para completar su solicitud");
                 }
