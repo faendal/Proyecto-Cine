@@ -40,17 +40,19 @@ export class Persona
     {
         try
         {
-            if ( value && value.trim().length >= 7 && value.trim().length <= 15) this._numero_contacto = value;
+            if ( toString(value) && (toString(value).trim().length >= 7 || toString(value).trim().length <= 15)) this._numero_contacto = value;
             else throw new Error('Ingrese un número de contacto válido');
         }
         catch (error) {throw new Error("Ocurrió un error asignando el número de contacto\n" + error); }
     }
 
+    get Saldo() { return this._saldo; }
+
     Recargar_saldo(valor)
     {
         try 
         { 
-            if (Multiplex.l_recargas.includes(value)) _saldo += valor;
+            if (Multiplex.l_recargas.includes(valor)) this._saldo += valor;
             else throw new Error("Ingrese un valor disponible en la lista de recargas");
         }
         catch (error) { throw new Error("Ocurrió un error recargando el saldo\n" + error); }

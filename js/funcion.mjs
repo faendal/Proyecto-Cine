@@ -12,8 +12,8 @@ export class Funcion
         this.Fecha_hora = fecha_hora;
         this.Sala = sala;
         this.Pelicula = pelicula;
-        this.boletas_general = this._sala.Sillas_general;
-        this.boletas_preferencial =  this._sala.Sillas_preferencial;
+        this._boletas_general = this._sala.Sillas_general;
+        this._boletas_preferencial =  this._sala.Sillas_preferencial;
     }
 
     get Fecha_hora() { return this._fecha_hora; }
@@ -51,6 +51,10 @@ export class Funcion
         }
         catch (error) { throw new Error("Ocurrió un error asignando la película\n" + error); }
     }
+
+    get Boletas_general() { return this._boletas_general;}
+
+    get Boletas_preferencial() { return this._boletas_preferencial; }
 
     toString() { return this.Fecha_hora.toLocaleTimeString("en-US"); }
 }

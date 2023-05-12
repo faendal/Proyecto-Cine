@@ -1,4 +1,5 @@
 import { Multiplex } from "./multiplex.mjs";
+import { Funcion } from "./funcion.mjs";
 import { Persona } from "./persona.mjs";
 
 export class Taquillero extends Persona 
@@ -24,7 +25,7 @@ export class Taquillero extends Persona
                         let deduccion = cantidad_general * Multiplex.precio_general + cantidad_preferencial * Multiplex.precio_preferencial
                         if (this._saldo >= deduccion)
                         {
-                            this._saldo -= (deduccion - this.Descuento);
+                            this._saldo -= (deduccion * ( 1 - this.Descuento));
                             funcion.boletas_general -= cantidad_general;
                             funcion.boletas_preferencial -= cantidad_preferencial;
                         }

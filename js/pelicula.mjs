@@ -1,6 +1,6 @@
 import { Multiplex } from "./multiplex.mjs";
 
-class Pelicula 
+export class Pelicula 
 {
     constructor(nombre, duracion, edad_minima, genero) 
     {
@@ -28,7 +28,7 @@ class Pelicula
     {
         try 
         {
-            if (parseInt(value) >= Multiplex.min_duracion && parseInt(value) <= Multiplex.max_duracion) this._duracion = value;
+            if (parseInt(value * 60 * 1000) >= Multiplex.min_duracion && parseInt(value * 60 * 1000) <= Multiplex.max_duracion) this._duracion = value * 60 * 1000;
             else throw new Error("Ingrese una duración válida para la película");
         } 
         catch (error) { throw new Error("Ocurrió un error asignando la duración\n" + error); }

@@ -1,4 +1,5 @@
 import { Multiplex } from "./multiplex.mjs"
+import { Funcion } from "./funcion.mjs";
 import { Persona } from "./persona.mjs";
 
 export class Cliente extends Persona 
@@ -8,13 +9,13 @@ export class Cliente extends Persona
         super(id, nombre, numero_contacto, saldo);
         this._puntos_acumulados = puntos_acumulados;
         this._descuento = Multiplex.descuento_regular;
-        this._combosCliente = Object.fromEntrie
+        this._combosCliente = Object.fromEntries
         (
             Object.entries(Multiplex.CombosMultiplex).filter(([key]) => key >= 1 && key <= 3)
         );
     }
 
-    get Puntos_acumulados() { return this.puntos_acumulados; }
+    get Puntos_acumulados() { return this._puntos_acumulados; }
 
     get Saldo() { return this._saldo; }
 
@@ -50,13 +51,13 @@ export class Cliente extends Persona
             {
                 if (funcion instanceof Funcion)
                 {
-                    if (cantidad_total <= funcion.boletas_general + funcion.boletas_preferencial)
+                    if (cantidad_total <= funcion.Boletas_general + funcion.Boletas_preferencial)
                     {
                         let deduccion = cantidad_general * Multiplex.precio_general + cantidad_preferencial * Multiplex.precio_preferencial;
                         if(this._saldo >= deduccion)
                         {
-                            this._saldo -= (deduccion - (1 - this.Descuento));
-                            puntos_acumulados += (cantidad_general + 2 * cantidad_preferencial);
+                            this._saldo -= (deduccion * (1 - this.Descuento));
+                            this._puntos_acumulados += (cantidad_general + 2 * cantidad_preferencial);
                             funcion.boletas_general -= cantidad_general;
                             funcion.boletas_preferencial -= cantidad_preferencial;
                         }
