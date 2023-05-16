@@ -1,7 +1,7 @@
 export class Multiplex 
 {
-    static min_duracion = 45 * 60 * 1000;
-    static max_duracion = 500 * 60 * 1000;
+    static min_duracion = 45;
+    static max_duracion = 500;
     static descuento_taquillero = 0.3;
     static descuento_regular = 0;
     static descuento_platino = 0.1;
@@ -19,6 +19,7 @@ export class Multiplex
     static precio_por_punto_oro = 2000;
     static l_edades_minimas = [7, 10, 13, 15, 17, 18];
     static l_recargas = [40000, 50000, 60000, 70000, 80000, 90000, 100000, 120000, 150000, 200000]
+    static l_categorias = ["regular" , "platino", "oro"]
     static CombosMultiplex = 
     {
         1: 25000,

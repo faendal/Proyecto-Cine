@@ -2,12 +2,14 @@ import { Multiplex } from "./multiplex.mjs";
 
 export class Persona 
 {
-    constructor(id, nombre, numero_contacto, saldo = 0) 
+    constructor(id, nombre, numero_contacto, usuario, contrasena, saldo = 0) 
     {
         this.Id = id;
         this.Nombre = nombre;
         this.Numero_contacto = numero_contacto;
         this._saldo = saldo;
+        this.Usuario = usuario
+        this.Contrasena = contrasena
     }
 
     get Id() { return this._id; }
@@ -48,6 +50,30 @@ export class Persona
 
     get Saldo() { return this._saldo; }
 
+    get Usuario() { return this._usuario;}
+
+    set Usuario(value)
+    {
+        try 
+        {
+            if (value && value.trim().length > 0) this._usuario = value;
+            else throw new Error('Ingrese un nombre de usuario válido');
+        } 
+        catch (error) { throw new Error('Ocurrió un error asignando el nombre de usuario\n' + error); }
+    }
+
+    get Contrasena() { return this._contrasena;}
+
+    set Contrasena(value)
+    {
+        try 
+        {
+            if (value && value.trim().length > 0) this._contrasena = value;
+            else throw new Error('Ingrese una contraseña válida');
+        } 
+        catch (error) { throw new Error('Ocurrió un error asignando la constraseña\n' + error); }
+    }
+    
     Recargar_saldo(valor)
     {
         try 

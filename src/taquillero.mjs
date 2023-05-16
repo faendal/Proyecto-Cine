@@ -4,9 +4,9 @@ import { Persona } from "./persona.mjs";
 
 export class Taquillero extends Persona 
 {
-    constructor(id, nombre, numero_contacto, saldo = 0) 
+    constructor(id, nombre, numero_contacto, usuario, contrasena, saldo = 0) 
     {
-        super(id, nombre, numero_contacto, saldo);
+        super(id, nombre, numero_contacto, usuario, contrasena, saldo);
         this._descuento = Multiplex.descuento_taquillero;
     }
 

@@ -2,12 +2,13 @@ import { Multiplex } from "./multiplex.mjs";
 
 export class Pelicula 
 {
-    constructor(nombre, duracion, edad_minima, genero) 
+    constructor(nombre, duracion, edad_minima, genero, puntero_imagen) 
     {
         this.Nombre = nombre;
         this.Duracion = duracion;
         this.Edad_minima = edad_minima;
         this.Genero = genero;
+        this.Puntero_imagen = puntero_imagen;
     }
 
     get Nombre() { return this._nombre; }
@@ -28,7 +29,7 @@ export class Pelicula
     {
         try 
         {
-            if (parseInt(value * 60 * 1000) >= Multiplex.min_duracion && parseInt(value * 60 * 1000) <= Multiplex.max_duracion) this._duracion = value * 60 * 1000;
+            if (parseInt(value) >= Multiplex.min_duracion && parseInt(value) <= Multiplex.max_duracion) this._duracion = value * 60 * 1000;
             else throw new Error("Ingrese una duración válida para la película");
         } 
         catch (error) { throw new Error("Ocurrió un error asignando la duración\n" + error); }
@@ -41,7 +42,7 @@ export class Pelicula
         try 
         {
             if (Multiplex.l_edades_minimas.includes(parseInt(value))) this._edad_minima = value;
-            else throw new Error("Ingrese una las edades mínimas varían entre los 0 y los 18 años");
+            else throw new Error("Ingrese una edad incluida en el marco de clasificaciones ESRB");
         } 
         catch (error) { throw new Error("Ocurrió un error asignando la edad mínima\n" + error); }
     }
@@ -56,6 +57,18 @@ export class Pelicula
             else throw new Error("Ingrese un género válido");
         }
         catch (error) { throw new Error("Ocurrió un error asignando el género\n" + error); }
+    }
+
+    get Puntero_imagen() { return this._puntero_imagen; }
+
+    set Puntero_imagen(value) 
+    {
+        try 
+        {
+            if (value && value.trim().length >= 0) this._puntero_imagen = value;
+            else throw new Error("Ingrese un nombre válido");
+        } 
+        catch (error) { throw new Error("Ocurrió un error asignando el nombre a la película\n" + error); }
     }
 
     toString() { return this.Nombre; }

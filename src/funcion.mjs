@@ -56,5 +56,5 @@ export class Funcion
 
     get Boletas_preferencial() { return this._boletas_preferencial; }
 
-    toString() { return this.Fecha_hora.toLocaleTimeString("en-US"); }
+    toString() { return this.Fecha_hora.toLocaleDateString("en-US", options) + this.Fecha_hora.toLocaleTimeString("en-US"); }
 }
